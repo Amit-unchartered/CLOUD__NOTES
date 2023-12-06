@@ -1,0 +1,242 @@
+PURPOSE- networking through vagrant, how to alot ip addresses to vms as per our need and change some port numbers
+provisioning==> when VM is coming up we want to run some linux commands, how to change RAM CPU and disk utilisation.
+creating multiple vms through single vagrant file.
+
+
+vagrant global-status ==>to show all the status of vms that we have
+vagrant global-status --prune ==> to remove the prvious information
+vagrant status ==> to get the status of VM runnig in the current directory
+ls -a ==> shows all the files including the hidden files.
+when you'll do vagrant up for the first time then a hidden file .vagrant will be created which will be readed whenever we write like vagrant halt,destroy, remove then it will come and read the .vagrant file for the information about VM running.
+
+==>the vagrant file is written in ruby, # commments out the statement, and in vagrant file most of them are commented out.
+
+==>while we created VM manually we have created a bridge interface, if we want to the same with vagrant then we are going to see a setting config.vm.network "public_network". All the settings must start with config.if we uncomment the previous one then it means give me one more adapter that is co-nnected to bridge netwrok and that is going to give me IP address from my Wi-Fi router.This is going to fetch IP from wireless router, so it is going to be dynamic. 
+
+==> config.vm.network "private_network", ip: "192.168.33.10"
+if we uncomment this then we will get a static IP address, so third octet may be something else like 25.12 .
+
+==>If we want to change RAM size then we need to uncomment
+   config.vm.provider "virtualbox" do |vb|  and then end.
+
+==>ifconfig is going to show all the network interface and their IP addresses, we can tell the nat adapter by seeing the IP address as it is same for every VM.
+
+==> after vagrant ssh the vagrant file in the directory is synced with the /vagrant file in the VM .
+
+==> if our VM unexpectedly crashes or aborts then our data may be gone so to have data we can save it in /vagrant file of VM and it will automatically saved in the directoty of our computer
+
+==> to run the bash script file give the absolute path
+
+==> the default sync directory is /vagrant and the to change that and keep it as per our need we need to edit vagrant file, we need to uncomment   config.vm.synced_folder "../data", "/vagrant_data" and write the wanted path in the place of ../data by D:\\myshellscripts==> we need to apply one more \ because we are converting from linux to windows.
+
+==>provisioning is executing of commands and bash scripts when the VM comes up.In other technologies it is also called as bootstraping, so when OS is booting .
+
+==>if VM is not existing then after changing in vagrant file , vagrant up command will work, BUT if it already exists then use vagrant reload --provision, the provisioning wil not run automatically by themselves they need to be ran by writing vagrant reload --provision bcoz if they would run automatically then they would give weird errors.
+
+######SERVER MANAGEMENT######
+
+1. Website on centos-7 httpd service and HTML templates.
+2. hosting wordpress on ubuntu 18 using LAMP stack linux,apache2,mysql,php.
+3.then automation using vagrant provisioning.
+
+ip addr show ==> same as ifconfig
+systemctl start httpd
+systemctl enable httpd
+cd /var/www/html==>here we keep our codes that we want to host.
+in any case we make configuration changes to the server then service needs to be restarted using systemctl restart httpd , we are deploying our website so we need to bounce our service so we use systemctl restart httpd.
+
+###WEBSITE AUTOMATION###
+
+we'll put all the codes required for manual setup of the wavecafe website in th vagrant provisioning section and when we do that it is known as IAAC(infrastructure as a code). Cloud formation, terraform are IAAC for the cloud computing environment like we are using vagrant for our local VMs.
+
+IMP:-Infrastructure as code (IaC) is the process of managing and provisioning infrastructure (networks, virtual machines, load balancers, and connection topology) through CODE/Config Files.
+
+E:g
+
+Vagrant for local
+Terraform for Cloud
+Ansible for Servers
+
+Cloudformation for AWS
+
+etc
+
+if we are doing vagrant up again and again the the zip file would already exist and ask questions to override it, to overcome this problem use -o in unzip command like unzip -o 2121_wave_cafe.zip
+
+we can write the mysql commands thrugh the shell also by writing mysql -u root -e 'write the command between these two'
+ 
+we are provisioning infrastructure with code that is called IAAC, with this we can avoid human errors, save alot of time, and best part is we can version control our infrastructure
+
+###MULTI VM VAGRANT FILE###
+In a multiVM environment are goint to talk to each other then we should give static IP to them.Mariadb is the mySQL package in centos7
+To bring up VM using the vagrant ssh command use name of VM you want to bring up, abd for halt if we'll not use the name of VM then both will stop automatically. It is same for vagrant destroy and vagarant reload
+
+Provisioning is the process of configuring and deploying an information technology (IT) system resource either locally or in the cloud. In enterprise computing, the term is often associated with virtual machines (VMs) and cloud resource instances.
+
+###VPROFILE PROJECT SETUP###
+=>Multi Ties Web Appplication stack
+=>setup on laptop/dektop
+=>baseline for upcoming events
+helps you setup any project locally and we can setup the entire setup locally and we can do our R&D.
+
+PROBLEM:-
+=>the problem is we are not comfortable in making changes in real servers bcoz
+=>local setup is complex
+=>time consuming
+=>not repeatable
+
+SOLUTION:-
+==>we will have the local setup but it will be automated, repeatable and the code[IAAC] will be used, since we have have infrastructure as a code we can repeat it as many times we want.
+
+TOOLS:-
+=>hypervisor - oracle VM virtualbox
+=>automation - vagrant
+=>CLI - git bash
+=>IDE(any)
+
+we will make a web app in which user will enter the ip address (the ip address will be of the load balencer) and we are going to us NGINX to create load balancing experience.NGINX is open source software for web serving, reverse proxying, caching, load balancing, media streaming, and more.
+
+=> we'll configure it in such a way that as soon as the web request comes it is going to route the request to  Aache tomcat server(it is a JAVA web application service). If our application needs external storage we can use NFS(The Network File System (NFS) is a mechanism for storing files on a network. It is a distributed file system that allows users to access files and directories located on remote computers and treat those files and directories as if they were local.)
+
+=> In our project RabbitMQ(RabbitMQ is a messaging broker, or queying agent - an intermediary for messaging) is dummy, we added it just to make the system more complex
+
+=>the web application is ran through tomcat, to get the user information stored in the mysql database but before going to mysql database the request will go to memcached(Memcached (pronounced variously mem-cash-dee or mem-cashed) is a general-purpose distributed memory-caching system. It is often used to speed up dynamic database-driven websites by caching data and objects in RAM to reduce the number of times an external data source (such as a database or API) must be read.) for the first time the user infi will go from mysql server to tomcat but next time it will come from the cached info in memcached.(just as browser caching we have datbase caching.)
+
+=> we need to understand the flow of the stack. As a devops we are more focussed on implementation rather than functionality.
+
+//AUTOMATION SETUP//
+vagrant, vm virtualbox, bash scripts.
+
+//FLOW OF EXECUTION//
+clone source code, bring up VMS, validate that they are working and interacting with each other, setting up services
+1.MYSQL
+2.memcached
+3.rabbitMQ
+4.tomcat
+5.nginx
+6.deploy webapp   
+verify using web browser
+
+=>vagrant plugin install vagrant-hostmanager, it maps all the ips with hostnames
+
+=>mariadb-server is the package name and mariadb is the service name
+
+=>mysql_secure_installation => it is script which will ask a series of questions just  check the mysql services is secure
+
+==> every sql command ends with a semicolon
+==> wheneve you are going to set up any service or anything then you must do the update -y command.
+
+==> memcached -p 11211 -U 11111 -u memcache -d, 11211 => TCP(transmission control protocol) and 11111 => UDP(user datagram protocol), we can validate if the memcached is running on the right port or not by using ss -tunlp | grep 11211
+
+=>Tomcat is an application server to host Java Web Application like vprofile.
+
+Nginx is a frontent server, web server and can be used as a Load balancer.
+
+Mysql is a SQL Database server, similar are Mariadb, MSSql etc
+
+RabbitMQ is the most widely deployed open source message broker.
+
+Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls.
+
+==>application.properties is used by tomcat server to find information of all the backend services
+mysql, memcache, RabbitMQ, Elasticsearch
+
+In source code its located in vprofile-project/src/main/resources/application.properties.
+
+###COMPUTER NETWORKING###
+=>components, OSI model, Classification, Devices, Home Network, IP addresses, Protocols, DNS & DHCP, Network commands.
+
+==>What is COMPUTER NETEORKING?
+the communication between two or more network interfaces.
+
+==>COMPONENTS OF CN:-
+Two or more computers/devices, cables as links between the computers, network interfacing card(NIC) on each device, computer, 
+switches- to connect multiple network interfaces together, router - to connect multiple network together, software called operating system(OS)
+
+==>OSI MODEL:-
+1.people aroungd the world uses computer network to communicate with each other.
+2.for the worldwide data communication, systems must be developed whch are compatible to communicate with each other.
+3.there should be standard communcation methods and devices.
+4.ISO(international organisation of standardiztion) has developed this standard.
+
+communication system is devloped as if it is some kind of language which is to be understood by everyone.
+
+=>This communication model is called as Open System Interconnection(OSI)
+=>OSI-ISO model is a seven layer archietecture devloped in 1984.
+ 
+=>The basic elements of a layered model are:-
+1.services
+2.protocols
+3.and interfaces.
+#A service is a set of actions that a layer offers to another (higher) layer
+#A protocol is a set of rules that a layer uses to exchange information.
+#Interface means communication between the layers.
+
+  
+ 
+###CLASSIFICATION OF NETWORKS BASED ON GEOGRAPHY###
+=>LAN - local area network. ex -room computers
+=>WAN - wide area network. ex -internet
+=>MAN - metropolitan area network
+=>CAN - campus area network
+=>PAN - personal area network
+###SWITCHES AND ROUTERS###
+switches facilitates the sharing of resources by connecting together all the devices, including computers, printers, and servers, in a small business network.switch connects multiple computers together.
+  
+ 
+##ROUTERS
+a router connects multiple networks together. A router recieves and sends data on computer networks. Routers are sometimes confused with network hubs, modems, or network switches. However, routers can combine multiple networks together. It connects LAN with WAN.
+###HOME NETWORK###
+ 
+###CORPORATE NETWORK DIAGRAM###
+ 
+###IPv4 ADDRESS###
+ 
+32 BIT binary number, range of IPv4 0.0.0.0 to 255.255.255.255
+00000000.00000000.00000000.00000000 => lowest possible IPv4 address
+11111111.11111111.11111111.11111111 => highest possible IPv4 address
+==> Public IP => with the ISP or cloud service provider, ex- 54.86.23.90, this is our identity in network, it is mostly dynamic. 
+==>Private IP is for people like us to create our own network.ex - 192.168.1.10, it is mostly static.Its ranges are as follows:-(IMPORTANT)
+class A:- 10.0.0.0 -> 10.255.255.255
+class B:- 172.16.0.0 -> 172.31.255.255
+class C:- 192.168.0.0 -> 192.168.255.255
+###PROTOCOLS###
+In teh netowking and communications area, a protocol is the formal specification that defines the procedures that must be followed while transmitting and recieving data. Protocols defin the format, timing, sequence and error checking use on the network.
+ 
+ 
+we need to know the port numbers as they will be helpful while setting the firewalls, or security grooups. Like computer have an IP address a service running inside the computer will have a port number
+###LOOKING OSI 7 LAYER MODEL WITH TCP/IP PROTOCOLS###
+ 
+lets us say tomcat on one machine wants to communicate with mysql on ther machine then
+tomcat     ==>              Source 192.168.1.2:8080 Dest 192.168.1.2:3306   ==>                  MySQL                     
+192.168.1.2:8080                                                                                                      192.168.1.3:3306     
+
+###NETWORKS COMMANDS###
+==>when we get inside the the  multivm file using the vagrant up, and then do ifconfig then it shows the connected ip addresses,
+1. connected to nat network
+2.connected to IP(the static IP which we provided) address.
+3.lastly it shows the loopback address, this is used when computer refers to itself, you can say that it is a local network interface.
+==> ping releases the network connectivity from the machine to the IP address on which ping is applied, it shows network connectivity is there or not and the packets are not lost.
+==> if i don't want to use a IP address instead i want a name then i will need a DNS server or i can make an entry to the /etc/hosts in root directory. If i want to add the db01 there then i need to write 192.168.40.12 db01
+==>if you want to trace the complete path that the computer has taken to reach the target machine then you can use trace root(tracert www.google.in(for example)) . This command is used to see whether there is latency between a computer to some target machine. Then we can see that the latency is where and findout the problem.
+==>netstat -antp => tells about all the open TCP ports. if we are root user then only we will be able to see the PID(process ID) 
+==> ps -ef | grep apache2 => to search for apache 2 from the processes
+==> ss -tunlp => to see open ports on the machine with name and PID
+==> nmap => scannig the port of a target, for whether they are open or not. if we are trying to connect two machines, and they are not connecting then we will use nmap to scan the ports to see whether it is open or not.
+==>dig www.google.com( for example) => it will show us the DNS lookup, like it will show us the IP address. nslookup www.google.com (for example) is also same as the dig command but it is old.
+==>route -n => this command is going to show you the gateways
+==> arp => used to add or view content of kernels arp table
+==>mtr => same as traceroute but it is live (dynamic)
+==> we can use telnet command also to see whether a particular port is open or not in the target machine.ex- telnet 192.168.40.12 3306 i.e trying to connect web01 and db01 on port 3306.
+###CONTAINERS###
+DOCKER-Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications.
+DCKER HOST- computer on which all the things are going to happen.
+DOCKER DAEMON- it is the docker service that we are going to install, so we'll have a VM and we'll install the docker engine on that and run the containers., we'll run them from image and the image we'll be get from registry.
+ 
+client can be on the same machine or different machine or different machine, we'll create a VM , we'll install the docker engine and that will have the docker client also and with
+docker build - we can build our own images
+docker pull - to pull the images from registry.
+docker run - run the container from the image.
+docker containers are created from docker images.
+==> docker run hello-world => this will test whether the docker installation is fine or not.
+==>docker images => available images on your system., docker ps => will show running containers , docker ps -a => will show you all the containers.
