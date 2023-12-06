@@ -1,3 +1,24 @@
+BASICS
+1.Every network adapter in a network must have a IP address, it is alloted by wifi router
+2.cd ~ or cd -> come back to home directory, cp -r directory directory
+3.cp -r devdir bacupdir/ --> command option argument => for options --> command --help
+4.mv --> move and rename the file, ls -l --> long listing of files, file starting with - in the beginning is a regular file => it can be binary or text file etc. ls -lt --> arranges according to the timestamp. ls -ltr --> reverses.
+5.d -> directory, /dev/ conatins device files, c -> character file, b -> block file, l -> link file i.e it is shortcut to original file
+6.ln -s destination source --> create a soft link, to remove a link unlink linkname, mkdir -p --> it will make the entire file structure as mentioned
+
+FILTERING AND REDIRECTIONING
+1.grep -iR word < file  ==> it will search the word not only inside files but directory also,grep -v word ==> will show everything except the mentioned word
+2.head -20 filename --> reads first 20 lines
+3.tail -f filename --> it will show the dynamic contents of the file, useful while reading log files
+4. awk -F'delimitor' 'print $1' /etc/passwd
+5.for search and replace --> open vim(if you want to change a single file) --> %s/wordToBeReplaced/newWord/g(for doing globally). For changing in multiple files use sed -i's/wordToBeReplaced/newWord/g' inWhichFile. Without using i, it will just print after replacing and not change actually.
+6.uptime > /tmp/sysinfo.txt, if sysinfo.txt is not there then it will create it, if it already exists it will overwrite the contents in it.BUT if we don't want to overwrite then use >>.
+7. free -m --> memory utilisation, df -h --> harddisk partition utilisation. echo "content  ". if we don't want to see the output then move the contents to /dev/null.freeee -m 2(it is for error as freeee -m will throw an error and we want to redirect it without seeing the error message)>> /tmp/error.log ==> free -m 1(it is by default)>> /tmp/error.log. Can use & for handling both std err and std o/p.
+8. wc -l --> counts the number of lines, find /etc -name host*(i.e find all file in the etc directory having host in it) --> for finding file.(don't search directly in the root directory as it will make your system slow as it is a real time search.). Before running locate command do updatedb as it is not a real time search.
+9. id user --> gives information about that user, if I want to add all users to the group then use -aG for supplementary or secondary group, or use -ag for primary group. usermod -aG groupName (username which you want to add). To set or reset password use passwd username. Being root user you don't need password --> su - username --> to change to that user from root. last --> to see users who logged into the system.
+10. To delete the user if we use userdel username then its home directory and mailing spool will still be there, to delete it also we will do userdel -r username
+
+
 PURPOSE- networking through vagrant, how to alot ip addresses to vms as per our need and change some port numbers
 provisioning==> when VM is coming up we want to run some linux commands, how to change RAM CPU and disk utilisation.
 creating multiple vms through single vagrant file.
