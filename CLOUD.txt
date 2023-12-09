@@ -18,6 +18,12 @@ FILTERING AND REDIRECTIONING
 9. id user --> gives information about that user, if I want to add all users to the group then use -aG for supplementary or secondary group, or use -ag for primary group. usermod -aG groupName (username which you want to add). To set or reset password use passwd username. Being root user you don't need password --> su - username --> to change to that user from root. last --> to see users who logged into the system.
 10. To delete the user if we use userdel username then its home directory and mailing spool will still be there, to delete it also we will do userdel -r username
 
+FILE PERMISSIONS:-
+1.to find permissions of a directory use ls -ld, to change ownership recursively(i.e for subdirectories inside it.) use chown -R username:groupname <filepath>.
+2.we will not make changes directly in sudoers file, we will make changes in /etc/sudoers.d file.
+
+SOFTWARE MANAGEMENT:-
+1.rpm -ivh ==> i -> install, v -> verbose, h -> in human readable format.rpm -qa --> will list all the rpms.cat /etc/systemd/system/multi-user.target.wants/httpd.service, this file automatically gets created when we install httpd through yum.
 
 PURPOSE- networking through vagrant, how to alot ip addresses to vms as per our need and change some port numbers
 provisioning==> when VM is coming up we want to run some linux commands, how to change RAM CPU and disk utilisation.
