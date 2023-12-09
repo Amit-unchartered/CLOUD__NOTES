@@ -48,7 +48,7 @@ vagrant global-status --prune ==> to remove the prvious information
 vagrant status ==> to get the status of VM runnig in the current directory
 ls -a ==> shows all the files including the hidden files.
 when you'll do vagrant up for the first time then a hidden file .vagrant will be created which will be readed whenever we write like vagrant halt,destroy, remove then it will come and read the .vagrant file for the information about VM running.
-
+~/.vagrant.d is a global vagrant file the is hidden in the home directory & it will contain vagrant boxes you download and login keys and few other things.
 ==>the vagrant file is written in ruby, # commments out the statement, and in vagrant file most of them are commented out.
 
 ==>while we created VM manually we have created a bridge interface, if we want to the same with vagrant then we are going to see a setting config.vm.network "public_network". All the settings must start with config.if we uncomment the previous one then it means give me one more adapter that is co-nnected to bridge netwrok and that is going to give me IP address from my Wi-Fi router.This is going to fetch IP from wireless router, so it is going to be dynamic. 
