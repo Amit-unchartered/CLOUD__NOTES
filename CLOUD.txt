@@ -25,6 +25,19 @@ FILE PERMISSIONS:-
 SOFTWARE MANAGEMENT:-
 1.rpm -ivh ==> i -> install, v -> verbose, h -> in human readable format.rpm -qa --> will list all the rpms.cat /etc/systemd/system/multi-user.target.wants/httpd.service, this file automatically gets created when we install httpd through yum.
 
+PROCESSES:-
+1.top--> shows all the dynamic processes based on their consumption of cpu and ram.Similar to task manager in windows.ps aux --> similar to top but top shows the dynmaic processes and ps aux will show the processes and quit.PID 1 is the first process, in older linux systems it is init but in newer ones it is systemd. In ubuntu it is systemd only, this process will start so many other processes and will handle many child processes also.
+2.ps aux --> sort according to PID number, ps -ef --> will also show PPID(parent process ID), one process starts other processes, this is called as forking.
+3. kill PID --> it will first kill all the child processes then it will kill itself. Sometimes the processes become admin and it becomes difficult to kill, so we need to do it forcefully by typing kill -9 PID --> this will kill the parent process only and all the child processes will become orphan processes(they are adopted by PPID 1),(in new versions the orphan process are cleared automatically).
+4.To clear them use ps -ef | grep httpd | grep -v 'grep' | awk {'print $2'} | xargs kill -9
+5.To clear zombie processes reboot your machine. Zombie processes are the processes which are dead but their entry is still on the table. They don't use any resources but can become a problem.
+
+ARCHIEVING:-
+1.we do archieving of log files so that we can move them to other places and save disc space.
+2.tar -czvf jenkins_timestamp.tar.gz path_you_want_to_archieve. c --> create, z --> compressing the file, v --> verbose, f --> file, tar is for tar ball, gz --> gun zip.
+3.tar -xzvf tar_file--> x is for extraxt. If we want to extract in other directory then we need to use tar -xzvf tar_file -C <file directory where you want to extract it.> 
+4. zip -r(if you are acrchieving or compressing a directory.) and unzip <tarball> --> to unzip it.
+
 PURPOSE- networking through vagrant, how to alot ip addresses to vms as per our need and change some port numbers
 provisioning==> when VM is coming up we want to run some linux commands, how to change RAM CPU and disk utilisation.
 creating multiple vms through single vagrant file.
