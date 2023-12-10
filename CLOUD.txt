@@ -69,8 +69,8 @@ if we uncomment this then we will get a static IP address, so third octet may be
 
 ==> the default sync directory is /vagrant and the to change that and keep it as per our need we need to edit vagrant file, we need to uncomment   config.vm.synced_folder "../data", "/vagrant_data" and write the wanted path in the place of ../data by D:\\myshellscripts==> we need to apply one more \ because we are converting from linux to windows.
 
-==>provisioning is executing of commands and bash scripts when the VM comes up.In other technologies it is also called as bootstraping, so when OS is booting .
-
+==>provisioning is executing of commands and bash scripts when the VM comes up.In other technologies it is also called as bootstraping, so when OS is booting for the fisrt time run the scripts/code.
+==>if VM is up then provisioning will not work.
 ==>if VM is not existing then after changing in vagrant file , vagrant up command will work, BUT if it already exists then use vagrant reload --provision, the provisioning wil not run automatically by themselves they need to be ran by writing vagrant reload --provision bcoz if they would run automatically then they would give weird errors.
 
 ######SERVER MANAGEMENT######
