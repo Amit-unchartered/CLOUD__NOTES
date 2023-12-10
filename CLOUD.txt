@@ -101,9 +101,9 @@ Cloudformation for AWS
 
 etc
 
-if we are doing vagrant up again and again the the zip file would already exist and ask questions to override it, to overcome this problem use -o in unzip command like unzip -o 2121_wave_cafe.zip
+if we are doing vagrant up again and again then the zip file would already exist and ask questions to override it, to overcome this problem use -o in unzip command like unzip -o 2121_wave_cafe.zip
 
-we can write the mysql commands thrugh the shell also by writing mysql -u root -e 'write the command between these two'
+we can write the mysql commands through the shell also by writing mysql -u root -e 'write the command between these two'
  
 we are provisioning infrastructure with code that is called IAAC, with this we can avoid human errors, save alot of time, and best part is we can version control our infrastructure
 
@@ -112,6 +112,16 @@ In a multiVM environment are goint to talk to each other then we should give sta
 To bring up VM using the vagrant ssh command use name of VM you want to bring up, abd for halt if we'll not use the name of VM then both will stop automatically. It is same for vagrant destroy and vagarant reload
 
 Provisioning is the process of configuring and deploying an information technology (IT) system resource either locally or in the cloud. In enterprise computing, the term is often associated with virtual machines (VMs) and cloud resource instances.
+
+PYTHON DS, JSON, YAML:-
+=>data exchanges in devops uses mostlyh JSON and YAML, as a devops engineer its essential to understand, read and write this data format for exchange between diffferent applications and languages.
+=>variables are temporary storage of data in RAM. So they live in the programme
+=>variable="value"
+->echo $varibale --> value
+->echo variable --> variable
+->echo 'i am $variable' --> i am $variable
+->echo "i am $variable" --> i am value
+
 
 ###VPROFILE PROJECT SETUP###
 =>Multi Ties Web Appplication stack
