@@ -160,15 +160,15 @@ vagrant, vm virtualbox, bash scripts.
 //FLOW OF EXECUTION//
 clone source code, bring up VMS, validate that they are working and interacting with each other, setting up services
 1.MYSQL
-2.memcached
-3.rabbitMQ
-4.tomcat
-5.nginx
-6.deploy webapp   
+2.memcached(database caching)
+3.rabbitMQ(message broker or queying agent)
+4.tomcat(java web application service)
+5.nginx(load balancer)
+6.deploy webapp  
 verify using web browser
 
 =>vagrant plugin install vagrant-hostmanager, it maps all the ips with hostnames
-
+==>plugins are used for extra feature, the above one ensures that the hostname and ip address are being stored in /etc/hosts
 =>mariadb-server is the package name and mariadb is the service name
 
 =>mysql_secure_installation => it is script which will ask a series of questions just  check the mysql services is secure
