@@ -177,13 +177,19 @@ verify using web browser
 ==> wheneve you are going to set up any service or anything then you must do the update -y command.
 
 ==> memcached -p 11211 -U 11111 -u memcache -d, 11211 => TCP(transmission control protocol) and 11111 => UDP(user datagram protocol), we can validate if the memcached is running on the right port or not by using ss -tunlp | grep 11211
+==>network check --> ping app01 -c 4(number of ping packets that will be transmitted)
+
+==>we always start setting up from the backend like database, then queying/caching, application service then web service.
 
 =>Tomcat is an application server to host Java Web Application like vprofile.
 
 Nginx is a frontent server, web server and can be used as a Load balancer.
 
 Mysql is a SQL Database server, similar are Mariadb, MSSql etc
-
+-->grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123';
+==>Above % means admin user of this database can connect to this database from remote machine.
+-->sed -i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached --> some services only work in local machine, to connect with that service remotely from any other machine we need to do this config change.
+0.0.0.0 --> means listen from all the ipv4 addresses
 RabbitMQ is the most widely deployed open source message broker.
 
 Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls.
@@ -196,7 +202,7 @@ In source code its located in vprofile-project/src/main/resources/application.pr
 ###COMPUTER NETWORKING###
 =>components, OSI model, Classification, Devices, Home Network, IP addresses, Protocols, DNS & DHCP, Network commands.
 
-==>What is COMPUTER NETEORKING?
+==>What is COMPUTER NETWORKING?
 the communication between two or more network interfaces.
 
 ==>COMPONENTS OF CN:-
@@ -251,7 +257,7 @@ class A:- 10.0.0.0 -> 10.255.255.255
 class B:- 172.16.0.0 -> 172.31.255.255
 class C:- 192.168.0.0 -> 192.168.255.255
 ###PROTOCOLS###
-In teh netowking and communications area, a protocol is the formal specification that defines the procedures that must be followed while transmitting and recieving data. Protocols defin the format, timing, sequence and error checking use on the network.
+In the netowking and communications area, a protocol is the formal specification that defines the procedures that must be followed while transmitting and recieving data. Protocols define the format, timing, sequence and error checking use on the network.
  
  
 we need to know the port numbers as they will be helpful while setting the firewalls, or security grooups. Like computer have an IP address a service running inside the computer will have a port number
