@@ -199,6 +199,11 @@ mysql, memcache, RabbitMQ, Elasticsearch
 
 In source code its located in vprofile-project/src/main/resources/application.properties.
 
+==> jre --> java runtime environment --> it is to run java based application
+==> jdk --> java devlopment kit --> used to devlop java based applications.
+
+-->Whenever you make any change in the file /etc/systend/system --> execute this command --> systemctl daemon-reload
+
 ###COMPUTER NETWORKING###
 =>components, OSI model, Classification, Devices, Home Network, IP addresses, Protocols, DNS & DHCP, Network commands.
 
@@ -239,7 +244,6 @@ communication system is devloped as if it is some kind of language which is to b
 ###SWITCHES AND ROUTERS###
 switches facilitates the sharing of resources by connecting together all the devices, including computers, printers, and servers, in a small business network.switch connects multiple computers together.
   
- 
 ##ROUTERS
 a router connects multiple networks together. A router recieves and sends data on computer networks. Routers are sometimes confused with network hubs, modems, or network switches. However, routers can combine multiple networks together. It connects LAN with WAN.
 ###HOME NETWORK###
