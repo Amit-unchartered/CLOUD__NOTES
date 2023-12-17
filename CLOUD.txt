@@ -214,7 +214,7 @@ the communication between two or more network interfaces.
 Two or more computers/devices, cables as links between the computers, network interfacing card(NIC) on each device, computer, 
 switches- to connect multiple network interfaces together, router - to connect multiple network together, software called operating system(OS)
 
-==>OSI MODEL:-
+==>OSI MODEL:-(OpenSystems Interconnection)
 1.people aroungd the world uses computer network to communicate with each other.
 2.for the worldwide data communication, systems must be developed whch are compatible to communicate with each other.
 3.there should be standard communcation methods and devices.
