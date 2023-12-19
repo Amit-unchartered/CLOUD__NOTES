@@ -233,7 +233,16 @@ communication system is devloped as if it is some kind of language which is to b
 #A protocol is a set of rules that a layer uses to exchange information.
 #Interface means communication between the layers.
 
-  
+#OSI MODEL:-
+physical - bits
+data link - frames
+network - packets
+transport - segmemts
+session - data
+presentation - data
+application - data  
+
+In tcp/ip protocol the application, presentation and session layer are considered to be a single layer.
  
 ###CLASSIFICATION OF NETWORKS BASED ON GEOGRAPHY###
 =>LAN - local area network. ex -room computers
@@ -261,9 +270,8 @@ class A:- 10.0.0.0 -> 10.255.255.255
 class B:- 172.16.0.0 -> 172.31.255.255
 class C:- 192.168.0.0 -> 192.168.255.255
 ###PROTOCOLS###
-In the netowking and communications area, a protocol is the formal specification that defines the procedures that must be followed while transmitting and recieving data. Protocols define the format, timing, sequence and error checking use on the network.
- 
- 
+In the networking and communications area, a protocol is the formal specification that defines the procedures that must be followed while transmitting and recieving data. Protocols define the format, timing, sequence and error checking use on the network.
+  
 we need to know the port numbers as they will be helpful while setting the firewalls, or security grooups. Like computer have an IP address a service running inside the computer will have a port number
 ###LOOKING OSI 7 LAYER MODEL WITH TCP/IP PROTOCOLS###
  
@@ -283,7 +291,7 @@ tomcat     ==>              Source 192.168.1.2:8080 Dest 192.168.1.2:3306   ==> 
 ==> ps -ef | grep apache2 => to search for apache 2 from the processes
 ==> ss -tunlp => to see open ports on the machine with name and PID
 ==> nmap => scannig the port of a target, for whether they are open or not. if we are trying to connect two machines, and they are not connecting then we will use nmap to scan the ports to see whether it is open or not.
-==>dig www.google.com( for example) => it will show us the DNS lookup, like it will show us the IP address. nslookup www.google.com (for example) is also same as the dig command but it is old.
+==>dig www.google.com( for example) => it will show us the DNS lookup, like it will show us that name can be resolved to IP address or any other record. nslookup www.google.com (for example) is also same as the dig command but it is old.
 ==>route -n => this command is going to show you the gateways
 ==> arp => used to add or view content of kernels arp table
 ==>mtr => same as traceroute but it is live (dynamic)
