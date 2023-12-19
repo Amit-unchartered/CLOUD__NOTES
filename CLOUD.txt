@@ -308,3 +308,8 @@ docker run - run the container from the image.
 docker containers are created from docker images.
 ==> docker run hello-world => this will test whether the docker installation is fine or not.
 ==>docker images => available images on your system., docker ps => will show running containers , docker ps -a => will show you all the containers.
+==>docker run --name web01 -d -p 9080:80 nginx --> -d ==> to run the processes in background. -p to assign hostport to container port.
+==>Container will be running in internal network, so it can't be accessed from outside, in order to access it from outside we use port mapping.
+==>To access the container locally we need its ip, so use docker inspect containerName/ContainerID. Now type curl http://IPaddress:containerPort. for example(curl http://172.17.0.2:80)
+==>If we want to run multiple containers together then there is concept of docker compose, it will read file dockercompose.yaml file.
+==> docker compose down to stop and remove the container, docker system prune -a --> will remove all the containers and images if they are not used.
