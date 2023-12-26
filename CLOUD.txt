@@ -318,4 +318,10 @@ BASH SCRIPTING:-
 In Linux, process automation relies heavily on shell scripting. This involves creating a file containing a series of commands that can be executed together.
 ==>Bash script is a text file that may ave an extension .sh , it will start with a shebang character #! --> it tells the path of the interpreter i.e open the interpreter and execute the commands written in it.
 ==>to run a bash script, do ./scriptName , to comment inside bashscript use #comment. we need to change the permissions of the bash script file if it doesnot execute --> chmod +x bashfileName.
-
+#Variable Declaration
+PACKAGE="httpd wget unzip"
+SVC="httpd"
+URL="https://www.tooplate.com/zip-templates/2098_health.zip"
+ART_NAME="2098_health"
+TEMPDIR="/tmp/webfiles"
+==>to use variable, $variableName.
