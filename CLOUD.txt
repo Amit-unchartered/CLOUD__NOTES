@@ -313,3 +313,9 @@ docker containers are created from docker images.
 ==>To access the container locally we need its ip, so use docker inspect containerName/ContainerID. Now type curl http://IPaddress:containerPort. for example(curl http://172.17.0.2:80)
 ==>If we want to run multiple containers together then there is concept of docker compose, it will read file dockercompose.yaml file.
 ==> docker compose down to stop and remove the container, docker system prune -a --> will remove all the containers and images if they are not used.
+
+BASH SCRIPTING:-
+In Linux, process automation relies heavily on shell scripting. This involves creating a file containing a series of commands that can be executed together.
+==>Bash script is a text file that may ave an extension .sh , it will start with a shebang character #! --> it tells the path of the interpreter i.e open the interpreter and execute the commands written in it.
+==>to run a bash script, do ./scriptName , to comment inside bashscript use #comment. we need to change the permissions of the bash script file if it doesnot execute --> chmod +x bashfileName.
+
