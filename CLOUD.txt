@@ -325,3 +325,15 @@ URL="https://www.tooplate.com/zip-templates/2098_health.zip"
 ART_NAME="2098_health"
 TEMPDIR="/tmp/webfiles"
 ==>to use variable, $variableName.
+
+command line argument:-
+==>value of variable 0 is by default the name of the script. i.e. echo $0 prints the name of the bashscript file.
+==>If we try to echo a variable that is not defined then it will be shown empty.
+==>$1-$9, the first 9 arguments to the bash script.
+==>wget $1 > /dev/null  -->we are asking for the URL
+unzip $2.zip > /dev/null --> then we are asking for the artifact name
+sudo cp -r $2/* /var/www/html/
+i.e after writing this command in the bashscript, our code becomes reusable.
+
+==> echo $? --> prints the exit code --> if it is 0 the previous command was a success, it is non-zero then the previous commmand failed.
+==> echo $RANDOM --> give random number in the range 0 – 32767
