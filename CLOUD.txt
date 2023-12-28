@@ -381,3 +381,15 @@ USER INPUT ==> read -p 'Username: ' USR --> -p is for prompt
                read -sp 'Password: ' pass --> -sp is for suppressing the input
 
 we don't want script to be interactive in devops since it is error prone.
+--> whenever a process is running a pid file must be created. cat /var/run/httpd/httpd.pid, if we will stop the service the file will cease to exist.
+
+CRON JOBS --> if we want to run a process again and again a particular schedule then we use cron jobs, they are scheduled tasks
+crontab -e is going to edit --> i.e it will open a vim editor ==>
+# minute hours dayOfMonth month dayOfWeek COMMAND
+# 30 20 * * 1-5 COMMAND
+* * * * * /opt/scripts/11_monit.sh &>> /var/log/monit_httpd.log
+* --> for every interval
+==> we have created an intelligent script that will be running on a fixed schedule.
+
+
+REMOTE COMMAND EXECUTION --> how can we execute command from scriptbox to web01 and web02 and web03
