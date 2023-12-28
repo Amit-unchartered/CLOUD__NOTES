@@ -337,3 +337,47 @@ i.e after writing this command in the bashscript, our code becomes reusable.
 
 ==> echo $? --> prints the exit code --> if it is 0 the previous command was a success, it is non-zero then the previous commmand failed.
 ==> echo $RANDOM --> give random number in the range 0 – 32767
+
+QUOTES --> single and double both, inside double quotes the meaning of special character is there but inside single quote the meaning of special character is not there.
+[root@scriptbox ~]# echo 'I have $SKILL skills'
+I have $SKILL skills --> for single quotes
+
+[root@scriptbox ~]# echo "I have $SKILL skills"
+I have Devops skills --> for double quotes
+
+[root@scriptbox ~]# echo "due to $VIRUS we lost $9 million"
+due to covid19 we lost  million
+[root@scriptbox ~]# echo "due to $VIRUS we lost \$9 million"
+due to covid19 we lost $9 million --> after using backslash in front of any special character, it special meaning is ignored.
+
+==>COMMAND SUBSTITUTION --> it stores the output of the command in a variable.
+[root@scriptbox ~]# UP=`uptime` --> to store the command o/p use `` --> backticks
+[root@scriptbox ~]# echo $UP
+
+[root@scriptbox ~]# CURRENT_USER=$(who) --> one more way
+[root@scriptbox ~]# echo $CURRENT_USER
+vagrant pts/0 2023-12-28 07:11 (10.0.2.2)
+
+so --> either `` OR $(command)
+
+EXAMPLE:-
+[root@scriptbox ~]# FREE_RAM=`free -m | grep Mem | awk '{print $4}'`
+[root@scriptbox ~]# echo "free RAM is $FREE_RAM mb."
+free RAM is 767 mb.
+
+EXPORTING VARIABLES --> if you want to make variables permanent for a user or for every user in the system, then we have to export the variable.
+The variable exists in the parent shell, but not in the child shell, so we can export variableName, so the varible is available for all the child shell from this parent shell.
+==> Exporting the variable makes the variable global for all the child shells. 
+--> BUTT if i logout from the current shell, and login again the variable is lost.
+
+==> In every user's home directory there is a hidden file .bashrc, if we place our export and variable name in this file, then it will become permanent for the root user.
+-->when any user login the bashrc file is sourced --> source .bashrc --> i.e in order to make changes visible logout and login again.
+-->if we want to make the variable permanent for every user then update the /etc/profile 
+
+-->MORAL --> if you want to make variable permanent for a user the update the .bashrc file
+         --> if you want to make variable permanent for everyone then update the /etc/profile.
+
+USER INPUT ==> read -p 'Username: ' USR --> -p is for prompt
+               read -sp 'Password: ' pass --> -sp is for suppressing the input
+
+we don't want script to be interactive in devops since it is error prone.
