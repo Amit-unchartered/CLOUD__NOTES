@@ -392,4 +392,57 @@ crontab -e is going to edit --> i.e it will open a vim editor ==>
 ==> we have created an intelligent script that will be running on a fixed schedule.
 
 
-REMOTE COMMAND EXECUTION --> how can we execute command from scriptbox to web01 and web02 and web03
+REMOTE COMMAND EXECUTION --> how can we execute command from scriptbox to web01 and web02 and web03.
+-->we are going to add names to IP mapping in the scriptbox. so scriptbox can refe to all the machines with their names and not IP addresses.
+
+-->Add the ip addresses to the /etc/hosts --> 192.168.10.13 web01
+                                              192.168.10.14 web02
+                                              192.168.10.15 web03
+
+==>ssh vagrabt@web01 trying to SSH into a virtual machine named "web01" using the Vagrant user
+==>whenever i was trying to log into web01, web02, it was asking me password, but for web03 --> Permission denied (publickey) --> so ubuntu doesnot allow password login.
+-->vagrant ssh web03 is keybased login --> if any linux machine you are trying to login with password and if it throws you that public access denies then, open the /etc/ssh/sshd_config --> and find the line password authentication, if it is no then do it yes.
+-->then restart the ssh service --> in ubuntu the name of ssh service is ssh only.
+-->add user devops in all the VMs --> web01 web02 web03
+-->now from scriptbox we can remote execute commands in these VMs --> ssh devops@web01 uptime --> shows uptime of web01 and then come back to same command ineterface.
+
+SSH key Exchange --> we can do the above but the problem is everytime it asks for password.
+BUT there is one more way to login i.e key based. key based login are considered more safer
+--> To generate the key --> ssh-keygen
+[root@scriptbox ~]# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa. --> this works as a key
+Your public key has been saved in /root/.ssh/id_rsa.pub. --> this works as a lock
+so we will put the lock(public key) in web01 web02 web03 by --> ssh-copy-id user@hostname 
+==>CONCLUSION --> now if we will do --> ssh user@hostname command --> it will not ask for password
+
+-->/root/.ssh/id_rsa --> private key will be here --> it is longer than the public key.
+-->/root/.ssh/id_rsa.pub --> public key will be here.
+-->when lock matches with the key(since both are generated in pairs) then we get authenticated.
+--> now when we will do ssh user@hostname then it is actually written --> ssh -i /root/.ssh/id_rsa user@hostname
+
+==>to push file from one VM to other VM do --> scp sourceFile destination:<file path> --> scp testfile.txt devops@web01:/tmp/
+-->scp doesnot asks any password, if there is any password then the key is not exchanged.
+--> ############################################################for deployment of multiple VMs.
+#!/bin/bash
+
+USR='devops'
+
+for host in $(cat remhosts)
+do
+  echo
+  echo "############################################"
+  echo "connecting to $host"
+  echo "pushing script to $host"
+  scp multios_websetup.sh $USR@$host:/tmp/
+  echo "executing script on $host"
+  ssh $USR@$host sudo /tmp/multios_websetup.sh
+  ssh $USR@$host sudo rm -rf /tmp/multios_websetup.sh
+  echo "############################################"
+  echo
+done
+~
+##################################################################
