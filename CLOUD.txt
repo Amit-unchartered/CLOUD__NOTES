@@ -450,3 +450,26 @@ done
 AWS ==> Cloud Computing --> Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing. Instead of buying, owning,
 and maintaining physical data centers and servers, you can access technology services, such as computing power, storage, and databases, on an as-needed basis 
 from a cloud provider like Amazon Web Services (AWS).
+
+
+GIT:-
+What is a version control system?
+Version control, also known as source control, is the practice of tracking and managing changes to software code.
+
+==>localised VCS, centralised VCS, distributed VCS
+
+==>git remote add origin URL
+$ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = false
+        bare = false
+        logallrefupdates = true
+        symlinks = false
+        ignorecase = true
+[remote "origin"]
+        url = https://github.com/Amit-unchartered/Amit-Agrawal-git.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+
+
+==>git keeps track of files not directories
