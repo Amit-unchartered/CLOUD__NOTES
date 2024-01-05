@@ -474,6 +474,4 @@ $ cat .git/config
 
 
 ==>git keeps track of files not directories
-=======
-Ec2
->>>>>>> f0e94a6c5fc0cbb57ae822df63d80d44719a564c
+
