@@ -475,3 +475,38 @@ $ cat .git/config
 
 ==>git keeps track of files not directories
 
+==>git log --oneline --> for getting short id
+==>git show id -> it will show the same thing that we will see on the command line.
+
+==>To create a new branch --> git branch -c <branch_name>
+==>git branch -a --> will show all the branches
+
+==>ROLLING BACK IN GIT:-
+1. if you have modified a file and not gone into the stash area, git checkout <file_name> --> it will rollback to original
+2. git diff --> it will show difference in the file that you have changed --> if you are ok with it --> git add .
+-->If we want to rollback from staging area then --> git restore --staged <file_name>.
+-->If we want to see the differences in the file after entering the staging area then --> git diff --cached
+3. If we have committed the message and want to rollback --> git revert HEAD --> a new commit named revert <"file_name"> --> will be formed
+4. if we don't want to have history whatsoever --> git reset --hard id(above this id everything will be removed).
+5.$ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = false
+        bare = false
+        logallrefupdates = true
+        symlinks = false
+        ignorecase = true
+[remote "origin"]
+        url = https://github.com/Amit-unchartered/titanwork.git --> the authentication will be based upon username and password, so there are chances of exposing it.        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+        remote = origin
+        merge = refs/heads/main
+
+==> to overcome this github provides SSH based login, ans almost every remote github repository provides SSH based authentication --> which will be through SSH keys.
+==>first --> rm -rf .ssh/* --> to remove anything that is alreasy present in .ssh folder, then --> ssh-keygen.exe --> to generate a SSH key.
+-->enter the public ssh key in the github after adding SSH key.
+-->git clone SSH_link_from_github
+
+MAVEN --> BUILD TOOL --> Maven is a build automation tool used primarily for Java projects. Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages. 
+-->source code --> compile --> tests --> packaging --> health checks.
+write scripts in XML format
