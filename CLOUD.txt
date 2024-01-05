@@ -450,6 +450,7 @@ done
 AWS ==> Cloud Computing --> Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing. Instead of buying, owning,
 and maintaining physical data centers and servers, you can access technology services, such as computing power, storage, and databases, on an as-needed basis 
 from a cloud provider like Amazon Web Services (AWS).
+<<<<<<< HEAD
 
 
 GIT:-
@@ -473,3 +474,6 @@ $ cat .git/config
 
 
 ==>git keeps track of files not directories
+=======
+Ec2
+>>>>>>> f0e94a6c5fc0cbb57ae822df63d80d44719a564c
