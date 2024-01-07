@@ -450,8 +450,41 @@ done
 AWS ==> Cloud Computing --> Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing. Instead of buying, owning,
 and maintaining physical data centers and servers, you can access technology services, such as computing power, storage, and databases, on an as-needed basis 
 from a cloud provider like Amazon Web Services (AWS).
-<<<<<<< HEAD
 
+IAAS -- infrastructure as a service
+PAAS -- platform as a service
+SAAS -- software as a service
+
+We will keep US based region, as it is less expensive.
+
+EC2--> Elastic Compute Cloud-->About VMs and related services.
+(refer to the slides for more)
+
+AMI --> amazon machine image.
+
+instance type --> ex - M4, C4, F1, I3 --> size of the instance i.e how much CPU, RAM the instance provide
+refer to this for more info --> https://aws.amazon.com/ec2/instance-types/
+
+EBS --> Elastic block storage. --> amazon provides su with flexible, cost effective, and easy to use data storage options for your instances.
+EBS --> is a virtual hard disk on which you can store data as well as OS.
+
+Tag -->Tags are key and value pairs that act as metadata for organizing your AWS resources. With most AWS resources, you have the option of adding tags when you create the resource.
+Examples of resources include an Amazon Elastic Compute Cloud (Amazon EC2) instance, an Amazon Simple Storage Service (Amazon S3) bucket, or a secret in AWS Secrets Manager.
+
+Security group --> A security group controls the traffic that is allowed to reach and leave the resources that it is associated with. For example, after you associate a security group with an EC2 instance,
+it controls the inbound and outbound traffic for the instance.
+
+Amazon EC2 uses public key cyrptography to encrypt and decrypt login information.
+
+ONE AWS region will have minimum two zones.
+
+==>Every EC2 instance have a by default firewall --> security group.
+
+==>check for users before login --> for AMI ec2-user is the user generally, can be ubuntu or centos 
+
+==>Inbound & Outbound Rules:-
+inbound --> traffic coming from outside on the instance.
+outbound --> traffic going from instance to outside
 
 GIT:-
 What is a version control system?
