@@ -486,6 +486,8 @@ ONE AWS region will have minimum two zones.
 inbound --> traffic coming from outside on the instance.
 outbound --> traffic going from instance to outside
 
+if you reare not able to connect to the EC2 instance then connect the internet from your mobile data and try connecting by it
+
 GIT:-
 What is a version control system?
 Version control, also known as source control, is the practice of tracking and managing changes to software code.
