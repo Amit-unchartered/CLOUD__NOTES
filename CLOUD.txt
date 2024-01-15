@@ -633,9 +633,23 @@ partition_path  where you want to mount it  format type  options      dumping_co
 /dev/xvdf1      /var/www/html/images         ext4         defaults        0          0
 -->Now --> mount -a --> (it will mount all the partitions in /etc/fstab file)
 
---> umount /var/www/html/images --> if this throws an error --> run lsof <directory that is mouted>
+--> umount /var/www/html/images --> if this throws an error --> run lsof <directory that is mouted inside that directory> --> then umount it.
+-->IMP -> to remove the volume --> first detach --> then delete it --> otherwise you will pay for it.
 if you reare not able to connect to the EC2 instance then connect the internet from your mobile data and try connecting by it
 
+-->for database-
+->follow same steps for creating formating and mounting.
+->mkdir -p /var/lib/mysql --> mount xvdf1 to this path
+->so even before you install the service, the partition, formatted, mounted perfectly
+->what will happen if we by chance delete the data --> we will take Snapshot. --> before loosing the dat we will tak snapshot.
+->after deleting the data --> stop the service to prevent any overwrite in the mysql file.
+->cd to home directory of root user ->> umount /var/lib/mysql/ ->> detach the disk volume from aws console ->> create volume from the snapshot taken
+->> attach the created volume with the instance. ->> then do mount -a in git bash
+->snapshot is not just for storing the data, it can be used to change zones, size of volume, type of volume, encrypting the data. 
+->>if it snapshot of root volume then we create image from that.
+->>manage fast snapshot restore --> for larger volumes ->> extra charges will be applied.
+->>we can copy snapshot to other region.
+->>modify --> we can make snapshot public, or share it other aws account.
 GIT:-
 What is a version control system?
 Version control, also known as source control, is the practice of tracking and managing changes to software code.
