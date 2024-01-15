@@ -650,6 +650,20 @@ if you reare not able to connect to the EC2 instance then connect the internet f
 ->>manage fast snapshot restore --> for larger volumes ->> extra charges will be applied.
 ->>we can copy snapshot to other region.
 ->>modify --> we can make snapshot public, or share it other aws account.
+
+ELASTIC LOAD BALANCING:-
+Elastic Load Balancing (ELB) automatically distributes incoming application traffic across multiple targets and virtual appliances in one or more Availability Zones (AZs).
+-->you have multiple servers, and for accesing them there is one end end point, it s load balancer
+-->application load balancer ->> layer 7 load balancer. ->> only used for http & https.
+-->network load balancer ->>  layer 4 of the OSI. ->> can haldle millions of request per second. ->> we can create a elastic IP and attach it to the load balancer ->> so it is stattic IP.
+->>create an ami from this instance ->> we will create a image that will have website in it. So we can launch instance from that, so we cluster of AMIs having the same data.
+->>from snapshot you can create a volume but from ami we can create a instance.
+->>we can change AMI region, modify its specification 
+->we can create AMI automatically using EC2 image builder else manually as we do.
+->we can launch the instance using AMI --> but we need to go through the manual process ->> use template to launch fast
+
+
+
 GIT:-
 What is a version control system?
 Version control, also known as source control, is the practice of tracking and managing changes to software code.
