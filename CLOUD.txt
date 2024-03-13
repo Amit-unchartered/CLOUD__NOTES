@@ -463,7 +463,7 @@ EC2--> Elastic Compute Cloud-->About VMs and related services.
 AMI --> amazon machine image.
 
 instance type --> ex - M4, C4, F1, I3 --> size of the instance i.e how much CPU, RAM the instance provide
-refer to this for more info --> https://aws.amazon.com/ec2/instance-types/
+refer to this for more info --> https://aws.amazon.com/ec2/instance-types/ 
 
 EBS --> Elastic block storage. --> amazon provides su with flexible, cost effective, and easy to use data storage options for your instances.
 EBS --> is a virtual hard disk on which you can store data as well as OS.
@@ -503,6 +503,9 @@ outbound --> traffic going from instance to outside
 ->we will use this AWS CLI to manage our entire AWS account and for that we will give it adminstrator access.
 ->if we are creating this user for somebody else who need access to a specific service like s3 access then we need to give s3 policy only. We don't need to give adminstrator access to everybody.
 ->never share your access keys and secret access keys, because they have the adminstrator access and never post it in public repositories as there are bots scanning for these keys all over internet.
+
+Elastic IP --> used when we need static public IP, many advantages are there like we can entire new instance but for the user the IP address will remain same.
+=>Every security group, public IP all these are for network interfaces not instance, we can create more network interface and attach it to our instance.
 
 ==>configuring AWS CLI
 aws configure --> provide the info
