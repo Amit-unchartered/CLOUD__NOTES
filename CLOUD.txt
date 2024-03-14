@@ -522,6 +522,20 @@ aws configure --> provide the info
 ->we should name our volumes using proper naming as it becomes easy for us to identify if we have multiple volumes.
 ->instance and volume needs to be in the same zone, then only volume can be connected to the instance
 ->fdisk -l --> going to list all your partitions.
+###########################################################################
+Disk /dev/xvda: 10 GiB, 10737418240 bytes, 20971520 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: BC4822EF-1C6F-44BE-A322-E1AFC3BF04A6
+
+Device     Start      End  Sectors Size Type
+/dev/xvda1  2048     4095     2048   1M BIOS boot
+/dev/xvda2  4096 20971486 20967391  10G Linux filesystem
+###########################################################################
+==>xvda partition has two partitions xvda1 and xvda2, clearly xvda2 contains the root partition, i.e all the things present in the operating system are there in xvda2.
+
 ->create disk partion in xvdf hardisk --> fdisk /dev/xvdf
 
 ###########################################################################
@@ -638,34 +652,46 @@ partition_path  where you want to mount it  format type  options      dumping_co
 
 --> umount /var/www/html/images --> if this throws an error --> run lsof <directory that is mouted inside that directory> --> then umount it.
 -->IMP -> to remove the volume --> first detach --> then delete it --> otherwise you will pay for it.
-if you reare not able to connect to the EC2 instance then connect the internet from your mobile data and try connecting by it
+if you are not able to connect to the EC2 instance then connect the internet from your mobile data and try connecting by it
+==>even now you are not able to connect, then stop and start the instance once again.
+-->if umount doesnot works in first time, httpd service must be using that folder to display to user, then use lsof to see the processes running, kill them
+-->then unmount the partition & detach the volume also from AWS
 
 -->for database-
 ->follow same steps for creating formating and mounting.
 ->mkdir -p /var/lib/mysql --> mount xvdf1 to this path
 ->so even before you install the service, the partition, formatted, mounted perfectly
-->what will happen if we by chance delete the data --> we will take Snapshot. --> before loosing the dat we will tak snapshot.
+->what will happen if we by chance delete the data --> we will take Snapshot. --> before loosing the data we will take snapshot.
 ->after deleting the data --> stop the service to prevent any overwrite in the mysql file.
 ->cd to home directory of root user ->> umount /var/lib/mysql/ ->> detach the disk volume from aws console ->> create volume from the snapshot taken
 ->> attach the created volume with the instance. ->> then do mount -a in git bash
 ->snapshot is not just for storing the data, it can be used to change zones, size of volume, type of volume, encrypting the data. 
-->>if it snapshot of root volume then we create image from that.
+->>if it is snapshot of root volume then we create image from that.
 ->>manage fast snapshot restore --> for larger volumes ->> extra charges will be applied.
 ->>we can copy snapshot to other region.
 ->>modify --> we can make snapshot public, or share it other aws account.
 
 ELASTIC LOAD BALANCING:-
-Elastic Load Balancing (ELB) automatically distributes incoming application traffic across multiple targets and virtual appliances in one or more Availability Zones (AZs).
--->you have multiple servers, and for accesing them there is one end end point, it s load balancer
--->application load balancer ->> layer 7 load balancer. ->> only used for http & https.
--->network load balancer ->>  layer 4 of the OSI. ->> can haldle millions of request per second. ->> we can create a elastic IP and attach it to the load balancer ->> so it is stattic IP.
-->>create an ami from this instance ->> we will create a image that will have website in it. So we can launch instance from that, so we cluster of AMIs having the same data.
+Elastic Load Balancing (ELB) automatically distributes incoming application traffic across multiple targets,such as Amazon EC2 instances, containers, and IP addresses in multiple Availability Zones (AZs).
+-->you have multiple servers, and for accesing them there is one end end point, it is load balancer
+-->application load balancer ->> layer 7 load balancer. ->> only used for http & https. --> used only for web traffic
+-->network load balancer ->>  layer 4 of the OSI. ->> can haldle millions of request per second. ->> we can create a elastic IP and attach it to the load balancer ->> so it is static IP. --> high performing load balancer, so it is expensive.
+-->classic load balancer ->> simplest.
+-->New=> gateway load balancer --> used to manage virtual appliances like firewalls, acts as a single entry point for your network, reduces intrusion also.
+->>create an ami from this instance ->> we will create a image that will have website in it. So we can launch instance from that, so we can have cluster of AMIs having the same data.
+->>creating image is same as snapshot but it will snapshot+metadata, so we can directly boot from this image
 ->>from snapshot you can create a volume but from ami we can create a instance.
+->>by using the EC2 image builder we can create pipeline to build your images automatically.
+->>launch template is basically the information required to launch the instance.
 ->>we can change AMI region, modify its specification 
 ->we can create AMI automatically using EC2 image builder else manually as we do.
 ->we can launch the instance using AMI --> but we need to go through the manual process ->> use template to launch fast
 
+->>we can't access two instances web01 and web02 simultaneously, we want one load balancer for it.
+->>first we go to target groups(target groups are nothing but group of instances with health check)
+->>complete path is http://ip_address:80/ --> we run this, if it works then it is healthy 
 
+->Amazon linux is a RPM based Linux OS.
 
 GIT:-
 What is a version control system?
