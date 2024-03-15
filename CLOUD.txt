@@ -704,6 +704,7 @@ Almost all the services will have an option to stream the logs, in EC2 we don't 
 ->>Instance --> cloudwatch --> alarm --> email Notif.
 ->>instance --> cloudwatch logs --> create metrics from related data --> Email Notif.
 ->>cloudwatch will be adding the data every 5 minute.If i want it to reduce to 1 min, then we need to enable detailed monitoring(it is not free, careful).
+->>stress-it is a tool which can stress your linux OS on CPU and few other metrics
 
 GIT:-
 What is a version control system?
