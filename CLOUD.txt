@@ -693,6 +693,18 @@ Elastic Load Balancing (ELB) automatically distributes incoming application traf
 
 ->Amazon linux is a RPM based Linux OS.
 
+AMAZON CLOUDWATCH:-
+->>monitor performance of AWS environment-provide standard infrastructure metrics.
+->>Metrics :- AWS cloudwatch allows you to record metrics for services such as EBS, EC2, ELB, Health checks, RDS, Amazon S3, cloudfront etc.
+->>Events :- AWS Events deliver a near real time stream of system events that describe changes in AWS resources.(events are like creating a snapshot,, what can we do from such events is to create trigger.)
+->>Logs :- You can use amazon cloudwatch logs to monitor, store, and access your log files from Amazon EC2 instances, AWS cloudtrail, Route 53, and other sources.
+(Amazon Route 53 is a highly available and scalable cloud domain name system (DNS) service. Enables to customize DNS routing policies to reduce latency.)
+Almost all the services will have an option to stream the logs, in EC2 we don't have a direct option, we can set it from our operating system, from your OS you can set an agent which can stream logs to cloudwatch service.
+->>Alarm monitors cloudwatch metrics for instances. Simple Notification Service(Amazon SNS) is a web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
+->>Instance --> cloudwatch --> alarm --> email Notif.
+->>instance --> cloudwatch logs --> create metrics from related data --> Email Notif.
+->>cloudwatch will be adding the data every 5 minute.If i want it to reduce to 1 min, then we need to enable detailed monitoring(it is not free, careful).
+
 GIT:-
 What is a version control system?
 Version control, also known as source control, is the practice of tracking and managing changes to software code.
